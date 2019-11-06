@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{6
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{CCD250BA-F483-4A62-880A-2F208BFE3F60}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataResourceGenerator", "ClassLibrary1\DataResourceGenerator.csproj", "{00853EF2-66F2-4C48-8CFC-3F004474431E}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,10 +27,6 @@ Global
 		{CCD250BA-F483-4A62-880A-2F208BFE3F60}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CCD250BA-F483-4A62-880A-2F208BFE3F60}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CCD250BA-F483-4A62-880A-2F208BFE3F60}.Release|Any CPU.Build.0 = Release|Any CPU
-		{00853EF2-66F2-4C48-8CFC-3F004474431E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{00853EF2-66F2-4C48-8CFC-3F004474431E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{00853EF2-66F2-4C48-8CFC-3F004474431E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{00853EF2-66F2-4C48-8CFC-3F004474431E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -5,7 +5,7 @@ using Core;
 namespace DAL.Xml.Data
 {
     [DataContract]
-    internal class Category : IDataProvider<Core.Category>
+    internal class Category : IEntityProvider<Core.Category>
     {
         [DataMember(Name = "uid", Order = 0)]
         public Guid Uid { get; set; }
@@ -16,11 +16,10 @@ namespace DAL.Xml.Data
         [DataMember(Name = "description", Order = 2)]
         public string Description { get; set; }
 
-        public Core.Category GetData()
+        public Core.Category Cast()
         {
-            return new Core.Category()
+            return new Core.Category(Uid)
             {
-                Uid = Uid,
                 Name = Name,
                 Description = Description
             };

@@ -7,9 +7,9 @@ namespace DAL.Xml.Data
     internal class CategoryRelationship
     {
         [DataMember(Name = "parent_uid", Order = 0)]
-        public Guid ParentID { get; set; }
+        public Guid ParentUid { get; set; }
 
         [DataMember(Name = "child_uid", Order = 1)]
-        public Guid ChildID { get; set; }
+        public Guid ChildUid { get; set; }
     }
 }

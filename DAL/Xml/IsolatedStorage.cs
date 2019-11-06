@@ -3,7 +3,7 @@ using System.IO.IsolatedStorage;
 
 namespace DAL.Xml
 {
-    public class IsolatedStorage : IStorage
+    public class IsolatedStorage : IFileStorage
     {
         public Stream Load(string name)
         {

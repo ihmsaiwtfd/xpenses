@@ -1,11 +1,11 @@
 ﻿using System;
+using System.Linq;
 using System.Runtime.Serialization;
-using Core;
 
 namespace DAL.Xml.Data
 {
     [DataContract]
-    internal class Entry : IDataProvider<Core.Entry>
+    internal class Entry : IEntityProvider<Core.Entry>
     {
         [DataMember(Name = "uid", Order = 0)]
         public Guid Uid { get; set; }
@@ -22,11 +22,10 @@ namespace DAL.Xml.Data
         [DataMember(Name = "categories_uids", Order = 4)]
         public Guid[] CategoriesUids { get; set; }
 
-        public Core.Entry GetData()
+        public Core.Entry Cast()
         {
-            return new Core.Entry()
+            return new Core.Entry(Uid)
             {
-                Uid = Uid,
                 Date = Date,
                 Price = Price,
                 Comment = Comment
@@ -43,6 +42,7 @@ namespace DAL.Xml.Data
             Date = source.Date;
             Price = source.Price;
             Comment = source.Comment;
+            CategoriesUids = source.Categories.Select(o => o.Uid).ToArray();
         }
     }
 }

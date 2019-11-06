@@ -3,10 +3,8 @@ using System.Collections.Generic;
 
 namespace Core
 {
-    public class Category
+    public class Category : EntityBase
     {
-        public Guid Uid { get; set; }
-
         public string Name { get; set; }
 
         public string Description { get; set; }
@@ -14,5 +12,10 @@ namespace Core
         public Category[] Parents { get; set; }
 
         public Category[] Children { get; set; }
+
+        public Category(Guid uid)
+            : base(uid)
+        {
+        }
     }
 }

@@ -3,10 +3,8 @@ using System.Collections.Generic;
 
 namespace Core
 {
-    public class Entry
+    public class Entry : EntityBase
     {
-        public Guid Uid { get; set; }
-
         public decimal Price { get; set; }
 
         public DateTime Date { get; set; }
@@ -14,5 +12,10 @@ namespace Core
         public string Comment { get; set; }
 
         public Category[] Categories { get; set; }
+
+        public Entry(Guid uid)
+            : base(uid)
+        {
+        }
     }
 }

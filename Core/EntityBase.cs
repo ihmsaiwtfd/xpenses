@@ -1,7 +1,14 @@
-﻿namespace Core
+﻿using System;
+
+namespace Core
 {
     public abstract class EntityBase
     {
-        public int Id { get; protected set; }
+        public Guid Uid { get; private set; }
+
+        protected EntityBase(Guid uid)
+        {
+            Uid = uid;
+        }
     }
 }
