@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Autofac;
+using Core;
+using DAL;
 using System.Windows;
 
 namespace xpenses
@@ -13,5 +10,15 @@ namespace xpenses
     /// </summary>
     public partial class App : Application
     {
+        //public IContainer Container { get; private set; }
+
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+            ContainerBuilder builder = new ContainerBuilder();
+            builder.RegisterModule(new CoreModule());
+            builder.RegisterModule(new DataModule());
+            /*Container = */builder.Build();
+        }
     }
 }

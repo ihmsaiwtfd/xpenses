@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac, Version=4.9.4.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.4.9.4\lib\net45\Autofac.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -41,12 +44,26 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Category.cs" />
+    <Compile Include="CategoryRelation.cs" />
+    <Compile Include="CoreModule.cs" />
+    <Compile Include="Dto\AddEntryRequest.cs" />
+    <Compile Include="Dto\AddEntryResponse.cs" />
+    <Compile Include="Dto\UseCaseResponse.cs" />
     <Compile Include="EntityBase.cs" />
     <Compile Include="Entry.cs" />
-    <Compile Include="IRepository.cs" />
-    <Compile Include="ISpecification.cs" />
+    <Compile Include="EntryCategoryRelation.cs" />
+    <Compile Include="Interfaces\IOutputPort.cs" />
+    <Compile Include="Interfaces\IRepository.cs" />
+    <Compile Include="Interfaces\IUseCaseRequest.cs" />
+    <Compile Include="Interfaces\IUseCaseRequestHandler.cs" />
+    <Compile Include="Interfaces\UseCases\IAddEntryUseCase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UseCases\AddEntryUseCase.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

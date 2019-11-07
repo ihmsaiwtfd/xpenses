@@ -2,9 +2,10 @@
 
 namespace DAL
 {
-    public interface IEntityProvider<T>
+    internal interface IEntityProvider<T>
         where T: EntityBase
     {
         T Cast();
+        void From(T source);
     }
 }

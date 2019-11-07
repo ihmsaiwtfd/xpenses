@@ -25,15 +25,11 @@ namespace DAL.Xml.Data
             };
         }
 
-        public Category()
+        public void From(Core.Category entity)
         {
-        }
-
-        public Category(Core.Category source)
-        {
-            Uid = Uid;
-            Name = Name;
-            Description = Description;
+            Uid = entity.Uid;
+            Name = entity.Name;
+            Description = entity.Description;
         }
     }
 }

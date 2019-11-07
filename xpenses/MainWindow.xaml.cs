@@ -11,5 +11,12 @@ namespace GUI
         {
             InitializeComponent();
         }
+
+        private async void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            MainVM vm = new MainVM();
+            this.DataContext = vm;
+            await vm.Initialize();
+        }
     }
 }

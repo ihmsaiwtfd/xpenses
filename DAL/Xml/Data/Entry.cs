@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Runtime.Serialization;
 
 namespace DAL.Xml.Data
@@ -19,9 +18,6 @@ namespace DAL.Xml.Data
         [DataMember(Name = "comment", Order = 3)]
         public string Comment { get; set; }
 
-        [DataMember(Name = "categories_uids", Order = 4)]
-        public Guid[] CategoriesUids { get; set; }
-
         public Core.Entry Cast()
         {
             return new Core.Entry(Uid)
@@ -32,17 +28,12 @@ namespace DAL.Xml.Data
             };
         }
 
-        public Entry()
-        {
-        }
-
-        public Entry(Core.Entry source)
+        public void From(Core.Entry source)
         {
             Uid = source.Uid;
             Date = source.Date;
             Price = source.Price;
             Comment = source.Comment;
-            CategoriesUids = source.Categories.Select(o => o.Uid).ToArray();
         }
     }
 }

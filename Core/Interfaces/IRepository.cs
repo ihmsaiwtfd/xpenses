@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 
-namespace Core
+namespace Core.Interfaces
 {
     public interface IRepository<T> where T : EntityBase
     {

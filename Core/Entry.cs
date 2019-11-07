@@ -11,8 +11,6 @@ namespace Core
 
         public string Comment { get; set; }
 
-        public Category[] Categories { get; set; }
-
         public Entry(Guid uid)
             : base(uid)
         {
