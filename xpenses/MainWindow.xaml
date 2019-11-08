@@ -1,9 +1,7 @@
 ﻿<Window x:Class="GUI.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="xpenses"
-        Loaded="MainWindow_Loaded"
-        >
+        Title="xpenses">
     <Window.Resources>
         <Style TargetType="Button">
             <Setter Property="Height" Value="30"/>
@@ -26,7 +24,7 @@
                 
             </DataGrid>
             <StackPanel Grid.Row="1" Orientation="Horizontal">
-                <Button Content="Add"/>
+                <Button Content="Add" Command="{Binding AddEntryCommand}"/>
                 <Button Content="Edit"/>
                 <Button Content="Remove"/>
                 <Button Content="Categories…"/>

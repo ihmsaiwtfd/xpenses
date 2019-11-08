@@ -7,7 +7,7 @@ namespace DAL.Xml
     {
         public Stream Load(string name)
         {
-            using (IsolatedStorageFile isoStore = IsolatedStorageFile.GetStore(IsolatedStorageScope.User, null, null))
+            using (IsolatedStorageFile isoStore = IsolatedStorageFile.GetStore(IsolatedStorageScope.Assembly | IsolatedStorageScope.Machine, null, null))
             {
                 return isoStore.OpenFile(name, FileMode.Open, FileAccess.Read, FileShare.Read);
             }
@@ -15,9 +15,18 @@ namespace DAL.Xml
 
         public void Save(Stream stream, string name)
         {
-            using (IsolatedStorageFile isoStore = IsolatedStorageFile.GetStore(IsolatedStorageScope.User, null, null))
+            using (IsolatedStorageFile isoStore = IsolatedStorageFile.GetStore(IsolatedStorageScope.Assembly | IsolatedStorageScope.Machine, null, null))
             {
-                isoStore.OpenFile(name, FileMode.Create, FileAccess.Write, FileShare.None);
+                string dir = Path.GetDirectoryName(name);
+                if (!isoStore.DirectoryExists(dir))
+                    isoStore.CreateDirectory(dir);
+
+                using (var file = isoStore.OpenFile(name, FileMode.Create, FileAccess.Write, FileShare.None))
+                {
+                    stream.Seek(0, SeekOrigin.Begin);
+                    stream.CopyTo(file);
+                    file.Flush();
+                }
             }
         }
     }

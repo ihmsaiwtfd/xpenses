@@ -28,12 +28,12 @@ namespace DAL.Xml.Data
             };
         }
 
-        public void From(Core.Entry source)
+        public void From(Core.Entry entity)
         {
-            Uid = source.Uid;
-            Date = source.Date;
-            Price = source.Price;
-            Comment = source.Comment;
+            Uid = entity.Uid;
+            Date = entity.Date;
+            Price = entity.Price;
+            Comment = entity.Comment;
         }
     }
 }

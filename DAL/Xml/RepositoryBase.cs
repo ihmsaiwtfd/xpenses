@@ -86,13 +86,25 @@ namespace DAL.Xml
                 return;
 
             TData[] dalEntities = null;
-            using (Stream stream = _Storage.Load(Path.Combine(_Folder, FileName)))
+            try
             {
-                DataContractSerializer serializer = new DataContractSerializer(typeof(TData[]));
-                using (XmlReader reader = XmlReader.Create(stream))
+                using (Stream stream = _Storage.Load(Path.Combine(_Folder, FileName)))
                 {
-                    dalEntities = (TData[])serializer.ReadObject(reader);
+                    DataContractSerializer serializer = new DataContractSerializer(typeof(TData[]));
+                    using (XmlReader reader = XmlReader.Create(stream))
+                    {
+                        dalEntities = (TData[])serializer.ReadObject(reader);
+                    }
                 }
+            }
+            catch (Exception ex) when (
+                ex is DirectoryNotFoundException ||
+                ex is FileNotFoundException
+            )
+            {
+                _List = new List<T>();
+                Save();
+                return;
             }
             _List = dalEntities.Select(o => o.Cast()).ToList();
         }
@@ -102,16 +114,17 @@ namespace DAL.Xml
             if (_List == null)
                 throw new InvalidOperationException();
 
-            IEnumerable<TData> dalEntities = _List.Select(o =>
+            TData[] dalEntities = _List.Select(o =>
             {
                 TData d = new TData();
                 d.From(o);
                 return d;
-            });
+            })
+            .ToArray();
             using (Stream stream = new MemoryStream())
             {
                 DataContractSerializer serializer = new DataContractSerializer(typeof(TData[]));
-                using (XmlWriter writer = XmlWriter.Create(stream))
+                using (XmlWriter writer = XmlWriter.Create(stream, new XmlWriterSettings() { Indent = true, Encoding = System.Text.Encoding.UTF8 }))
                 {
                     serializer.WriteObject(writer, dalEntities);
                 }

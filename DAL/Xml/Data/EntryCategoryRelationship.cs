@@ -21,10 +21,10 @@ namespace DAL.Xml.Data
             };
         }
 
-        public void From(Core.EntryCategoryRelation source)
+        public void From(Core.EntryCategoryRelation entity)
         {
-            EntryUid = EntryUid;
-            CategoryUid = CategoryUid;
+            EntryUid = entity.EntryUid;
+            CategoryUid = entity.CategoryUid;
         }
     }
 }

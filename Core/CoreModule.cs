@@ -1,4 +1,6 @@
 ﻿using Autofac;
+using Core.Interfaces.UseCases;
+using Core.UseCases;
 
 namespace Core
 {
@@ -6,8 +8,7 @@ namespace Core
     {
         protected override void Load(ContainerBuilder builder)
         {
-            base.Load(builder);
-           // builder.RegisterType<Xml.EntryRepository>().As<IRepository<Entry>>().SingleInstance();
+            builder.RegisterType<AddEntryUseCase>().As<IAddEntryUseCase>().InstancePerLifetimeScope();
         }
     }
 }
