@@ -6,14 +6,11 @@ using System.Threading.Tasks;
 
 namespace Core.Dto
 {
-    public class AddEntryResponse : UseCaseResponse
+    public class DeleteEntriesResponse : UseCaseResponse
     {
-        public Entry AddedEntry { get; }
-
-        public AddEntryResponse(Entry newEntry, bool success, string message)
+        public DeleteEntriesResponse(bool success, string message)
             : base(success, message)
         {
-            AddedEntry = newEntry;
         }
     }
 }
