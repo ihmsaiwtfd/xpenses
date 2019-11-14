@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using GUI.ViewModels;
+using System.Windows;
 
 namespace GUI
 {

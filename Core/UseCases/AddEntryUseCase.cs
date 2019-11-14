@@ -6,7 +6,7 @@ using Core.Interfaces.UseCases;
 
 namespace Core.UseCases
 {
-    public class AddEntryUseCase : IAddEntryUseCase
+    internal class AddEntryUseCase : IAddEntryUseCase
     {
         private readonly IRepository<Entry> _EntryRepo;
         private readonly IRepository<EntryCategoryRelation> _RelationRepo;

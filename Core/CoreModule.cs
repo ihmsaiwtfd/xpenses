@@ -11,6 +11,9 @@ namespace Core
             builder.RegisterType<AddEntryUseCase>().As<IAddEntryUseCase>().InstancePerLifetimeScope();
             builder.RegisterType<GetEntriesUseCase>().As<IGetEntriesUseCase>().InstancePerLifetimeScope();
             builder.RegisterType<DeleteEntriesUseCase>().As<IDeleteEntriesUseCase>().InstancePerLifetimeScope();
+            builder.RegisterType<AddCategoryUseCase>().As<IAddCategoryUseCase>().InstancePerLifetimeScope();
+            builder.RegisterType<GetCategoriesUseCase>().As<IGetCategoriesUseCase>().InstancePerLifetimeScope();
+            builder.RegisterType<UpdateCategoryRelationsUseCase>().As<IUpdateCategoryRelationsUseCase>().InstancePerLifetimeScope();
         }
     }
 }

@@ -13,16 +13,6 @@ namespace Core.Dto
             Query = o => true;
         }
 
-        public GetEntriesRequest(DateTime fromDate, DateTime toDate)
-        {
-            Query = o => o.Date > fromDate && o.Date <= toDate;
-        }
-
-        public GetEntriesRequest(decimal fromPrice, decimal toPrice)
-        {
-            Query = o => o.Price > fromPrice && o.Price <= toPrice;
-        }
-
         public GetEntriesRequest(Expression<Func<Entry, bool>> query)
         {
             Query = query;

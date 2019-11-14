@@ -4,6 +4,7 @@ using Core.Dto;
 using Core.Interfaces;
 using Core.Interfaces.UseCases;
 using DAL.Xml;
+using GUI.Controls;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -15,16 +16,14 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
-namespace GUI
+namespace GUI.ViewModels
 {
     internal interface IMainResponseHandler : IOutputPort<AddEntryResponse>, IOutputPort<GetEntriesResponse>, IOutputPort<DeleteEntriesResponse>
     {
     }
 
-    public class MainVM : INotifyPropertyChanged, IMainResponseHandler
+    public class MainVM : ViewModelBase, IMainResponseHandler
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-
         private ICommand _AddEntryCommand;
 
         public ICommand AddEntryCommand
@@ -50,6 +49,20 @@ namespace GUI
                     _DeleteEntriesCommand = new RelayCommand(o => DeleteEntries());
                 }
                 return _DeleteEntriesCommand;
+            }
+        }
+
+        private ICommand _EditCategoriesCommand;
+
+        public ICommand EditCategoriesCommand
+        {
+            get
+            {
+                if (_EditCategoriesCommand == null)
+                {
+                    _EditCategoriesCommand = new RelayCommand(o => EditCategories());
+                }
+                return _EditCategoriesCommand;
             }
         }
 
@@ -97,11 +110,6 @@ namespace GUI
             }
         }
 
-        private void OnPropertyChanged([CallerMemberName]string propertyName = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
         private async void AddEntry()
         {
             using (var scope = IocProvider.Container.BeginLifetimeScope())
@@ -116,6 +124,12 @@ namespace GUI
             {
                 await scope.Resolve<IDeleteEntriesUseCase>().Handle(new DeleteEntriesRequest(SelectedEntries.OfType<Entry>().ToArray()), this);
             }
+        }
+
+        private void EditCategories()
+        {
+            CategoriesEditor editor = new CategoriesEditor();
+            editor.ShowDialog();
         }
 
         public void Handle(AddEntryResponse response)
