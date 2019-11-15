@@ -77,9 +77,17 @@
     </Compile>
     <Compile Include="Controls\CategoriesListBox.cs" />
     <Compile Include="Controls\EntriesDataGrid.cs" />
+    <Compile Include="Controls\EntryEditor.xaml.cs">
+      <DependentUpon>EntryEditor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="RelayCommand.cs" />
+    <Compile Include="ViewModels\EntryEditorVM.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Page Include="Controls\CategoriesEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\EntryEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

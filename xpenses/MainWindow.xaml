@@ -27,7 +27,12 @@
         </Grid>
         <GridSplitter Grid.Column="1" ResizeDirection="Columns"/>
         <Grid Grid.Column="2">
-            <Label Content="under construction"/>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Content="{Binding CurrentMonthTotal}"/>
+            </Grid>
         </Grid>
     </Grid>
 </Window>

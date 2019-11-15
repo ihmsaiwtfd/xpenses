@@ -5,4 +5,11 @@
         <Setter Property="Width" Value="80"/>
         <Setter Property="Margin" Value="5"/>
     </Style>
+    <ControlTemplate x:Key="textBoxValidationFailed">
+        <StackPanel Orientation="Horizontal">
+            <Border BorderBrush="Red" BorderThickness="2">
+                <AdornedElementPlaceholder />
+            </Border>
+        </StackPanel>
+    </ControlTemplate>
 </ResourceDictionary>

@@ -50,6 +50,8 @@
     <Compile Include="Dto\AddCategoryResponse.cs" />
     <Compile Include="Dto\AddEntryRequest.cs" />
     <Compile Include="Dto\AddEntryResponse.cs" />
+    <Compile Include="Dto\DeleteCategoriesRequest.cs" />
+    <Compile Include="Dto\DeleteCategoriesResponse.cs" />
     <Compile Include="Dto\DeleteEntriesRequest.cs" />
     <Compile Include="Dto\DeleteEntriesResponse.cs" />
     <Compile Include="Dto\GetCategoriesRequest.cs" />
@@ -67,6 +69,7 @@
     <Compile Include="Interfaces\IUseCaseRequest.cs" />
     <Compile Include="Interfaces\IUseCaseRequestHandler.cs" />
     <Compile Include="Interfaces\UseCases\IAddCategoryUseCase.cs" />
+    <Compile Include="Interfaces\UseCases\IDeleteCategoriesUseCase.cs" />
     <Compile Include="Interfaces\UseCases\IDeleteEntriesUseCase.cs" />
     <Compile Include="Interfaces\UseCases\IAddEntryUseCase.cs" />
     <Compile Include="Interfaces\UseCases\IGetCategoriesUseCase.cs" />
@@ -76,6 +79,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UseCases\AddCategoryUseCase.cs" />
     <Compile Include="UseCases\AddEntryUseCase.cs" />
+    <Compile Include="UseCases\DeleteCategoriesUseCase.cs" />
     <Compile Include="UseCases\DeleteEntriesUseCase.cs" />
     <Compile Include="UseCases\GetCategoriesUseCase.cs" />
     <Compile Include="UseCases\GetEntriesUseCase.cs" />

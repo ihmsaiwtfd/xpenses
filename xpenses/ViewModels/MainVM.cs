@@ -18,7 +18,7 @@ using System.Windows.Input;
 
 namespace GUI.ViewModels
 {
-    internal interface IMainResponseHandler : IOutputPort<AddEntryResponse>, IOutputPort<GetEntriesResponse>, IOutputPort<DeleteEntriesResponse>
+    internal interface IMainResponseHandler : IOutputPort<GetEntriesResponse>, IOutputPort<DeleteEntriesResponse>
     {
     }
 
@@ -96,6 +96,8 @@ namespace GUI.ViewModels
             }
         }
 
+        public string CurrentMonthTotal => Entries?.Sum(o => o.Price).ToString();
+
         public MainVM()
         {
             Entries = new ObservableCollection<Entry>();
@@ -108,13 +110,15 @@ namespace GUI.ViewModels
             {
                 await scope.Resolve<IGetEntriesUseCase>().Handle(new GetEntriesRequest(), this);
             }
+            OnPropertyChanged(nameof(CurrentMonthTotal));
         }
 
-        private async void AddEntry()
+        private void AddEntry()
         {
-            using (var scope = IocProvider.Container.BeginLifetimeScope())
+            EntryEditor editor = new EntryEditor();
+            if (editor.ShowDialog() == true)
             {
-                await scope.Resolve<IAddEntryUseCase>().Handle(new AddEntryRequest(100.0m, DateTime.Parse("2019-12-12"), "a comment", new[] { Guid.NewGuid() }), this);
+                ReloadEntries();
             }
         }
 
@@ -132,12 +136,6 @@ namespace GUI.ViewModels
             editor.ShowDialog();
         }
 
-        public void Handle(AddEntryResponse response)
-        {
-            if (response.Success)
-                Entries.Add(response.AddedEntry);
-        }
-
         public void Handle(GetEntriesResponse response)
         {
             if (response.Success)
@@ -147,6 +145,7 @@ namespace GUI.ViewModels
                 {
                     Entries.Add(entry);
                 }
+                OnPropertyChanged(nameof(CurrentMonthTotal));
             }
         }
 

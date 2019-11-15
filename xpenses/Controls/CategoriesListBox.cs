@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 
 namespace GUI.Controls
 {
@@ -18,6 +19,11 @@ namespace GUI.Controls
         public CategoriesListBox()
         {
             SelectionChanged += EntriesDataGrid_SelectionChanged;
+            Loaded += CategoriesListBox_Loaded;
+        }
+
+        private void CategoriesListBox_Loaded(object sender, RoutedEventArgs e)
+        {
             SelectedItemsList = SelectedItems;
         }
 

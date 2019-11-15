@@ -12,7 +12,11 @@ using System.Windows.Input;
 
 namespace GUI.ViewModels
 {
-    public class CategoriesEditorVM : ViewModelBase, IOutputPort<AddCategoryResponse>, IOutputPort<GetCategoriesResponse>, IOutputPort<UpdateCategoryRelationsResponse>
+    public class CategoriesEditorVM : ViewModelBase,
+        IOutputPort<AddCategoryResponse>,
+        IOutputPort<GetCategoriesResponse>,
+        IOutputPort<UpdateCategoryRelationsResponse>,
+        IOutputPort<DeleteCategoriesResponse>
     {
         private CategoryRelation[] _Relations;
 
@@ -80,7 +84,6 @@ namespace GUI.ViewModels
         }
 
         private IList _ParentCategories;
-        private int _ParentCategoriesCount;
 
         public IList ParentCategories
         {
@@ -91,10 +94,6 @@ namespace GUI.ViewModels
                 {
                     _ParentCategories = value;
                     OnPropertyChanged();
-                }
-                if (_ParentCategoriesCount != _ParentCategories.Count)
-                {
-                    _ParentCategoriesCount = _ParentCategories.Count;
                 }
             }
         }
@@ -188,8 +187,12 @@ namespace GUI.ViewModels
             return SelectedCategory != null;
         }
 
-        private void DeleteCategory()
+        private async void DeleteCategory()
         {
+            using (var scope = IocProvider.Container.BeginLifetimeScope())
+            {
+                await scope.Resolve<IDeleteCategoriesUseCase>().Handle(new DeleteCategoriesRequest(new[] { SelectedCategory }), this);
+            }
         }
 
         private async void OnSelectedCategoryChanged()
@@ -256,6 +259,18 @@ namespace GUI.ViewModels
 
         public void Handle(UpdateCategoryRelationsResponse response)
         {
+            if (response.Success)
+            {
+                ReloadCategories();
+            }
+        }
+
+        public void Handle(DeleteCategoriesResponse response)
+        {
+            if (response.Success)
+            {
+                ReloadCategories();
+            }
         }
     }
 }
