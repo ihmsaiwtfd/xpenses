@@ -46,6 +46,12 @@
   <ItemGroup>
     <Compile Include="DataModule.cs" />
     <Compile Include="IEntityProvider.cs" />
+    <Compile Include="Sql\Data\Category.cs" />
+    <Compile Include="Sql\Data\CategoryRelationship.cs" />
+    <Compile Include="Sql\Data\Entry.cs" />
+    <Compile Include="Sql\Data\EntryCategoryRelationship.cs" />
+    <Compile Include="Sql\IDataObject.cs" />
+    <Compile Include="Sql\RepositoryBase.cs" />
     <Compile Include="Xml\CategoryRelationRepository.cs" />
     <Compile Include="Xml\CategoryRepository.cs" />
     <Compile Include="Xml\Data\Category.cs" />
@@ -68,6 +74,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
